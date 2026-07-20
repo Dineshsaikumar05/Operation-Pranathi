@@ -10,7 +10,6 @@
 /* ==========================================
             CSS VARIABLES
 ========================================== */
-
 :root{
 
     --primary:#2563EB;
@@ -31,10 +30,14 @@
               RESET
 ========================================== */
 
-*{
+*,
+*::before,
+*::after{
 
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
 
 }
@@ -63,7 +66,13 @@ body{
     position:relative;
 
 }
+img{
 
+    max-width:100%;
+
+    display:block;
+
+}
 /* ==========================================
             COMMON PANEL
 ========================================== */
@@ -93,18 +102,6 @@ body{
 
 }
 
-.content{
-    background:
-linear-gradient(
-135deg,
-rgba(255,255,255,.16),
-rgba(255,255,255,.08)
-);
-
-    width:100%;
-    max-width:980px;
-
-}
 
 /* ==========================================
             HEADINGS
@@ -197,7 +194,13 @@ p{
 /* ==========================================
               BUTTON
 ========================================== */
+button:focus-visible{
 
+    outline:2px solid #7DD3FC;
+
+    outline-offset:4px;
+
+}
 button{
 
     position:relative;
@@ -374,21 +377,6 @@ body::after{
         ANIMATIONS
 ========================================== */
 
-@keyframes twinkle{
-
-    from{
-
-        opacity:.45;
-
-    }
-
-    to{
-
-        opacity:1;
-
-    }
-
-}
 
 @keyframes shootingStar{
 
@@ -473,86 +461,19 @@ body::after{
     border:1px solid rgba(255,255,255,.22);
 
     border-radius:28px;
+
     overflow:hidden;
+
     position:relative;
 
     padding:60px;
 
-    -webkit-backdrop-filter: blur(24px);
-backdrop-filter: blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    backdrop-filter:blur(24px);
 
     box-shadow:
         0 20px 60px rgba(0,0,0,.30),
         inset 0 1px 0 rgba(255,255,255,.18);
-
-}
-/* ==========================================
-      GLASS LIGHT REFLECTION
-========================================== */
-
-.content::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:-140%;
-
-    width:70%;
-
-    height:100%;
-    opacity:.8;
-
-    background:linear-gradient(
-
-        115deg,
-
-        transparent,
-
-        rgba(255,255,255,.18),
-
-        rgba(255,255,255,.28),
-
-        transparent
-
-    );
-
-    transform:skewX(-25deg);
-
-    pointer-events:none;
-
-}
-.content:hover::before{
-
-    animation:glassSweep 1s ease-out forwards;
-
-}
-@keyframes glassSweep{
-
-    from{
-
-        left:-140%;
-
-    }
-
-    to{
-
-        left:170%;
-
-    }
-
-}
-/* ==========================================
-        GLASS SHIMMER EFFECT
-========================================== */
-
-.content{
-
-    position:relative;
-
-    overflow:hidden;
 
 }
 
@@ -571,19 +492,12 @@ backdrop-filter: blur(24px);
     height:100%;
 
     background:linear-gradient(
-
         110deg,
-
         transparent,
-
         rgba(255,255,255,.14),
-
         rgba(255,255,255,.28),
-
         rgba(255,255,255,.14),
-
         transparent
-
     );
 
     transform:skewX(-25deg);
@@ -780,51 +694,6 @@ p{
     transform:translateY(0);
 
 }
-/* ==========================================
-        TYPEWRITER EFFECT
-========================================== */
-
-.typewriter{
-
-    overflow:hidden;
-
-    white-space:nowrap;
-
-    width:0;
-
-    border-right:3px solid #7DD3FC;
-
-    animation:
-        typing 3s steps(35,end) forwards,
-        blinkCursor .8s infinite;
-
-}
-
-@keyframes typing{
-
-    from{
-
-        width:0;
-
-    }
-
-    to{
-
-        width:100%;
-
-    }
-
-}
-
-@keyframes blinkCursor{
-
-    50%{
-
-        border-color:transparent;
-
-    }
-
-}
 
 /* ==========================================
         BIRTHDAY PHOTO
@@ -1002,106 +871,6 @@ p{
     left:-28px;
 
     animation-delay:2.8s;
-
-}
-/* ==========================================
-        PART 3 - INTERACTIVE CARDS
-========================================== */
-
-.card-container{
-
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:30px;
-    margin-top:50px;
-
-    perspective:1200px;
-
-}
-
-.card{
-
-    position:relative;
-
-    height:260px;
-
-    transform-style:preserve-3d;
-
-    transition:transform .8s;
-
-    cursor:pointer;
-
-}
-
-.card:hover{
-
-    transform:translateY(-10px);
-
-}
-
-.card.flipped{
-
-    transform:rotateY(180deg);
-
-}
-
-.card-front,
-.card-back{
-
-    position:absolute;
-
-    inset:0;
-
-    border-radius:22px;
-
-    backface-visibility:hidden;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:25px;
-
-    background:rgba(255,255,255,.10);
-
-    -webkit-backdrop-filter: blur(18px);
-backdrop-filter: blur(18px);
-
-    border:1px solid rgba(255,255,255,.18);
-
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
-
-}
-
-.card-front h3{
-
-    font-size:3rem;
-
-    margin-bottom:20px;
-
-}
-
-.card-front h4{
-
-    color:white;
-
-}
-
-.card-back{
-
-    transform:rotateY(180deg);
-
-}
-
-.card:hover .card-front{
-
-    box-shadow:
-
-    0 0 25px rgba(96,165,250,.45);
 
 }
 
@@ -2194,7 +1963,7 @@ animation:fadeUp 3s;
 
     width:100%;
 
-    height:260px;
+    min-height:260px;
 
     perspective:1200px;
 
@@ -2202,18 +1971,18 @@ animation:fadeUp 3s;
 
 }
 
+/* BOTH SIDES */
+
 .card-front,
 .card-back{
 
     position:absolute;
 
-    width:100%;
-
-    height:100%;
+    inset:0;
 
     border-radius:22px;
 
-    padding:30px;
+    padding:24px;
 
     backface-visibility:hidden;
 
@@ -2239,20 +2008,21 @@ animation:fadeUp 3s;
 
     background:rgba(255,255,255,.08);
 
-    -webkit-backdrop-filter: blur(18px);
-backdrop-filter: blur(18px);
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
 
     border:1px solid rgba(255,255,255,.15);
 
     box-shadow:
 
-    0 15px 35px rgba(0,0,0,.25);
+        0 15px 35px rgba(0,0,0,.25);
 
 }
 
 .card-front h3{
 
-    font-size:3.2rem;
+    font-size:3rem;
 
     margin-bottom:15px;
 
@@ -2260,9 +2030,11 @@ backdrop-filter: blur(18px);
 
 .card-front h4{
 
-    color:#ffffff;
-
     font-size:1.2rem;
+
+    color:#fff;
+
+    line-height:1.4;
 
 }
 
@@ -2272,45 +2044,43 @@ backdrop-filter: blur(18px);
 
     background:
 
-    linear-gradient(
+        linear-gradient(
+            145deg,
+            #1B3F73,
+            #245BA8
+        );
 
-    145deg,
-
-    #1B3F73,
-
-    #245BA8
-
-    );
-
-    color:white;
+    color:#fff;
 
     transform:rotateY(180deg);
 
     box-shadow:
 
-    0 20px 45px rgba(0,0,0,.30);
+        0 20px 45px rgba(0,0,0,.30);
 
 }
 
 .card-back h4{
 
-    margin-bottom:15px;
+    margin-bottom:16px;
 
-    font-size:1.3rem;
+    font-size:1.2rem;
+
+    line-height:1.4;
 
 }
 
 .card-back p{
 
-    line-height:1.7;
+    font-size:.95rem;
+
+    line-height:1.75;
 
     color:#EAF4FF;
 
-    font-size:.95rem;
-
 }
 
-/* Flip */
+/* FLIP */
 
 .card.flipped .card-front{
 
@@ -2324,7 +2094,7 @@ backdrop-filter: blur(18px);
 
 }
 
-/* Hover */
+/* HOVER */
 
 .card:hover{
 
@@ -2334,7 +2104,7 @@ backdrop-filter: blur(18px);
 
 }
 
-/* Glow */
+/* GLOW */
 
 .card::after{
 
@@ -2348,11 +2118,15 @@ backdrop-filter: blur(18px);
 
     background:
 
-    radial-gradient(circle,
+        radial-gradient(
 
-    rgba(96,165,250,.25),
+            circle,
 
-    transparent 70%);
+            rgba(96,165,250,.25),
+
+            transparent 70%
+
+        );
 
     opacity:0;
 
@@ -2405,6 +2179,14 @@ backdrop-filter: blur(18px);
         MEMORY JAR
 ========================================== */
 
+.memory .content{
+
+    padding:36px 50px;
+
+}
+
+/* ---------- Layout ---------- */
+
 .memory-area{
 
     display:flex;
@@ -2412,74 +2194,117 @@ backdrop-filter: blur(18px);
     align-items:center;
     justify-content:center;
 
-    margin-top:25px;
-    gap:25px;
+    margin-top:12px;
+    gap:14px;
 
 }
+
+/* ---------- Jar ---------- */
 
 .memory-jar{
 
     position:relative;
 
-    font-size:clamp(5rem,8vw,7.5rem);
+    font-size:clamp(4.6rem,6vw,6.3rem);
 
     cursor:pointer;
 
-    -webkit-user-select:none;
     user-select:none;
+    -webkit-user-select:none;
 
     transition:
         transform .35s ease,
         filter .35s ease;
 
     filter:
-        drop-shadow(0 0 12px rgba(125,211,252,.45))
+        drop-shadow(0 0 14px rgba(125,211,252,.45))
         drop-shadow(0 0 28px rgba(59,130,246,.25));
 
 }
 
-
 .memory-jar:hover{
 
-    transform:scale(1.12) rotate(-8deg);
+    transform:scale(1.08);
 
     filter:
-        drop-shadow(0 0 18px rgba(125,211,252,.7))
-        drop-shadow(0 0 40px rgba(59,130,246,.35));
+        drop-shadow(0 0 20px rgba(125,211,252,.65))
+        drop-shadow(0 0 40px rgba(59,130,246,.30));
 
 }
 
+/* ---------- Glow ---------- */
+
+.jar-glow{
+
+    position:absolute;
+
+    inset:-20px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            rgba(125,211,252,.35),
+            transparent 72%
+        );
+
+    animation:jarGlow 3s ease-in-out infinite;
+
+    z-index:-1;
+
+}
+
+@keyframes jarGlow{
+
+    0%,100%{
+
+        transform:scale(.95);
+        opacity:.65;
+
+    }
+
+    50%{
+
+        transform:scale(1.12);
+        opacity:1;
+
+    }
+
+}
+
+/* ---------- Message ---------- */
+
 .memory-text{
 
-    width:min(92%,700px);
+    width:min(90%,650px);
 
-    min-height:120px;
+    min-height:100px;
 
-    padding:24px 28px;
+    padding:20px 24px;
 
     background:rgba(255,255,255,.08);
 
     border:1px solid rgba(255,255,255,.15);
 
-    border-radius:22px;
+    border-radius:20px;
 
-    -webkit-backdrop-filter: blur(14px);
-backdrop-filter: blur(14px);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
 
     color:#EAF4FF;
 
-    font-size:1.08rem;
+    font-size:1rem;
 
-    line-height:1.9;
+    line-height:1.75;
 
     text-align:center;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.18);
+        0 10px 28px rgba(0,0,0,.18);
 
     opacity:1;
 
-    transform:translateY(0) scale(1);
+    transform:translateY(0);
 
     transition:
         opacity .45s ease,
@@ -2487,15 +2312,16 @@ backdrop-filter: blur(14px);
         box-shadow .35s ease;
 
 }
+
 .memory-text.show{
 
     opacity:1;
 
-    transform:translateY(0) scale(1);
+    transform:translateY(0);
 
     box-shadow:
         0 0 25px rgba(125,211,252,.18),
-        0 10px 35px rgba(0,0,0,.18);
+        0 10px 28px rgba(0,0,0,.18);
 
 }
 
@@ -2503,7 +2329,101 @@ backdrop-filter: blur(14px);
 
     opacity:0;
 
-    transform:translateY(18px) scale(.96);
+    transform:translateY(15px);
+
+}
+
+/* ---------- Helper ---------- */
+
+.memory .helper{
+
+    margin:0;
+
+    line-height:1.7;
+
+}
+
+/* ---------- Button ---------- */
+
+.memory .next-btn{
+
+    margin-top:20px;
+
+}
+
+/* ==========================================
+        MEMORY JAR RESPONSIVE
+========================================== */
+
+@media (max-width:768px){
+
+    .memory .content{
+
+        padding:34px 18px;
+
+    }
+
+    .memory-area{
+
+        margin-top:10px;
+
+        gap:12px;
+
+    }
+
+    .memory-jar{
+
+        font-size:5.4rem;
+
+    }
+
+    .memory-text{
+
+        width:95%;
+
+        min-height:auto;
+
+        padding:18px;
+
+        font-size:.97rem;
+
+        line-height:1.7;
+
+    }
+
+    .memory .next-btn{
+
+        margin-top:22px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .memory .content{
+
+        padding:28px 16px;
+
+    }
+
+    .memory-jar{
+
+        font-size:4.8rem;
+
+    }
+
+    .memory-text{
+
+        width:100%;
+
+        padding:16px;
+
+        font-size:.94rem;
+
+        line-height:1.65;
+
+    }
 
 }
 /* ==========================================
@@ -3126,75 +3046,6 @@ backdrop-filter: blur(14px);
         transform:
             translate(var(--x),var(--y))
             scale(1.6);
-
-    }
-
-}
-/* ==========================================
-        MEMORY JAR RESPONSIVE
-========================================== */
-
-@media (max-width:768px){
-
-    .memory-area{
-
-        margin-top:18px;
-
-        gap:18px;
-
-    }
-
-    .memory-jar{
-
-        font-size:5.5rem;
-
-    }
-    .jar-glow{
-
-    position:absolute;
-
-    inset:-18px;
-
-    border-radius:50%;
-
-    background:radial-gradient(
-        rgba(125,211,252,.35),
-        transparent 70%
-    );
-
-    animation:jarGlow 3s ease-in-out infinite;
-
-    z-index:-1;
-
-}
-
-    .memory-text{
-
-        width:94%;
-
-        padding:20px;
-
-        font-size:1rem;
-
-        line-height:1.75;
-
-    }
-
-}
-
-@media (max-width:480px){
-
-    .memory-jar{
-
-        font-size:4.8rem;
-
-    }
-
-    .memory-text{
-
-        padding:18px;
-
-        font-size:.95rem;
 
     }
 
@@ -3835,116 +3686,319 @@ body::after{
 @media (max-width:768px){
 
     .panel{
-        padding:35px 14px;
+
+        min-height:auto;
+
+        align-items:flex-start;
+
+        padding:30px 14px;
+
     }
 
     .content{
-        width:100%;
-        max-width:100%;
-        padding:32px 20px;
-        border-radius:22px;
+        width:92%;
+        max-width:380px;
+        padding:22px 18px;
+        border-radius:20px;
+    }
+
+    section{
+        padding:35px 0;
     }
 
     h1{
-        font-size:2.2rem;
-        line-height:1.2;
+        font-size:1.7rem;
+        line-height:1.15;
     }
 
     h2{
-        font-size:1.7rem;
-        line-height:1.3;
+        font-size:1.45rem;
+        line-height:1.25;
     }
 
     h3{
-        font-size:1.3rem;
+        font-size:1.15rem;
     }
 
     h4{
-        font-size:1.05rem;
-    }
-
-    p{
         font-size:1rem;
-        line-height:1.8;
-    }
-
-    button{
-        width:100%;
-        padding:15px;
-        font-size:1rem;
-    }
-
-    .birthday-photo{
-        width:180px;
-        height:180px;
-    }
-
-    .gift-box{
-        font-size:90px;
-    }
-
-    .letter-box{
-        padding:28px 22px;
-    }
-
-    .timeline{
-        padding-left:20px;
-    }
-
-    .timeline-dot{
-        left:-20px;
-    }
-
-    .card-container{
-        grid-template-columns:1fr;
-        gap:20px;
-    }
-
-    .card{
-        height:240px;
-    }
-
-    .memory-text{
-        width:100%;
-    }
-
-}
-@media (max-width:480px){
-
-    .content{
-        padding:26px 16px;
-    }
-
-    h1{
-        font-size:1.9rem;
-    }
-
-    h2{
-        font-size:1.5rem;
     }
 
     p{
         font-size:.95rem;
+        line-height:1.7;
+    }
+
+    button{
+        width:100%;
+        padding:14px;
+        font-size:.95rem;
     }
 
     .birthday-photo{
-        width:155px;
-        height:155px;
+        width:160px;
+        height:160px;
     }
 
     .gift-box{
-        font-size:75px;
+        font-size:72px;
     }
 
     .letter-box{
-        padding:22px 16px;
+        padding:20px 18px;
+    }
+
+    .timeline{
+        padding-left:18px;
+    }
+
+    .timeline-dot{
+        left:-18px;
     }
 
     .timeline-content{
         padding:18px;
     }
 
-    .card{
-        height:220px;
+    .card-container{
+
+        grid-template-columns:1fr;
+
+        gap:18px;
+
     }
+
+    .card{
+
+        min-height:250px;
+        height:auto
+
+    }
+
+    .card-front,
+    .card-back{
+
+        padding:18px;
+
+    }
+
+    .card-front h3{
+
+        font-size:2.2rem;
+
+    }
+
+    .card-front h4{
+
+        font-size:1rem;
+
+    }
+
+    .card-back h4{
+
+        font-size:1rem;
+
+    }
+
+    .card-back p{
+
+        font-size:.9rem;
+
+        line-height:1.6;
+
+    }
+
+    .memory-text{
+        width:100%;
+    }
+
+    .typewriter{
+
+        white-space:normal;
+        width:auto;
+        border-right:none;
+        animation:none;
+
+    }
+
+    .award h1{
+        font-size:3rem;
+    }
+
+    .award h2{
+        font-size:1.5rem;
+    }
+
+}
+
+@media (max-width:480px){
+
+    .panel{
+        padding:42px 12px;
+    }
+
+    .content{
+        width:94%;
+        padding:20px 16px;
+        border-radius:18px;
+    }
+
+    h1{
+        font-size:1.55rem;
+    }
+
+    h2{
+        font-size:1.3rem;
+    }
+
+    h3{
+        font-size:1.05rem;
+    }
+
+    p{
+        font-size:.9rem;
+        line-height:1.65;
+    }
+
+    .birthday-photo{
+        width:145px;
+        height:145px;
+    }
+
+    .gift-box{
+        font-size:64px;
+    }
+
+    .letter-box{
+        padding:18px 15px;
+    }
+
+    .timeline-content{
+        padding:16px;
+    }
+
+    .card{
+
+        min-height:250px;
+        height:auto
+
+    }
+
+.card-front,
+.card-back{
+
+    padding:16px;
+
+}
+
+.card-front h3{
+
+    font-size:2rem;
+
+}
+
+.card-front h4{
+
+    font-size:.95rem;
+
+}
+
+.card-back h4{
+
+    font-size:.95rem;
+
+}
+
+.card-back p{
+
+    font-size:.85rem;
+
+    line-height:1.55;
+
+}
+
+    .award h1{
+        font-size:2.5rem;
+    }
+
+    .award h2{
+        font-size:1.25rem;
+    }
+
+}
+/* ==========================================
+        MOBILE FLIP CARD FINAL FIX
+========================================== */
+
+@media (max-width:768px){
+
+    .card-container{
+
+        margin-top:30px;
+        gap:18px;
+
+    }
+
+    .card{
+
+        min-height:220px;
+    }
+
+    .card-front,
+    .card-back{
+
+        padding:20px 18px;
+    }
+
+    .card-front h3{
+
+        font-size:2.2rem;
+        margin-bottom:10px;
+    }
+
+    .card-front h4{
+
+        font-size:1.05rem;
+        line-height:1.4;
+    }
+
+    .card-back h4{
+
+        font-size:1.08rem;
+        margin-bottom:12px;
+        line-height:1.4;
+    }
+
+    .card-back p{
+
+        font-size:.92rem;
+        line-height:1.65;
+    }
+
+    .cards-complete{
+
+        margin-top:35px;
+        padding:0 6px;
+    }
+
+    .cards-complete h3{
+
+        font-size:1.45rem;
+    }
+
+}
+@media (hover:none){
+
+    .card:hover{
+
+        transform:none;
+
+    }
+
+    .card:hover::after{
+
+        opacity:0;
+
+    }
+
 }

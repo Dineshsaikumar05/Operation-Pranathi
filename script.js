@@ -269,45 +269,63 @@ if (gift) {
 
 }
 
-    /* ==========================================
-            FLIP CARD SYSTEM
-    ========================================== */
+/* ==========================================
+        FLIP CARD SYSTEM
+========================================== */
 
-    const cards = document.querySelectorAll(".card");
-    const cardsComplete = document.getElementById("cardsComplete");
+const cards = document.querySelectorAll(".card");
+const cardsComplete = document.getElementById("cardsComplete");
 
-    let openedCards = 0;
+let openedCards = 0;
+const visitedCards = new Set();
 
-    cards.forEach(card => {
+cards.forEach(card => {
 
-        card.addEventListener("click", () => {
+    card.addEventListener("click", () => {
 
-            if (card.classList.contains("flipped")) return;
+        // Close all other cards
+        cards.forEach(c => {
 
-            card.classList.add("flipped");
+            if (c !== card) {
 
-            openedCards++;
-
-            if (openedCards === cards.length && cardsComplete) {
-
-                setTimeout(() => {
-
-                    cardsComplete.classList.add("show");
-
-                    cardsComplete.scrollIntoView({
-
-                        behavior: "smooth",
-                        block: "center"
-
-                    });
-
-                }, 700);
+                c.classList.remove("flipped");
 
             }
 
         });
 
+        // Toggle current card
+        card.classList.toggle("flipped");
+
+        // Count first-time visits only
+        if (!visitedCards.has(card)) {
+
+            visitedCards.add(card);
+            openedCards++;
+
+        }
+
+        // Show completion after all cards have been viewed
+        if (openedCards === cards.length && cardsComplete) {
+
+            setTimeout(() => {
+
+                cardsComplete.classList.add("show");
+
+                cardsComplete.scrollIntoView({
+
+                    behavior: "smooth",
+                    block: "center"
+
+                });
+
+            }, 700);
+
+        }
+
     });
+
+});
 /* ==========================================
             LETTER REVEAL
 ========================================== */
