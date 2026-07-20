@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Basic Meta -->
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Project Blue 💙 | Happy 21st Birthday, Pranathi</title>
+
+    <meta
+        name="description"
+        content="A handcrafted interactive birthday experience created especially for Pranathi's 21st Birthday.">
+
+    <meta
+        name="author"
+        content="Dinesh">
+
+    <meta
+        name="robots"
+        content="index, follow">
+
+    <!-- Browser Theme -->
+    <meta
+        name="theme-color"
+        content="#3B82F6">
+
+    <!-- Favicon -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="favicon.png">
+
+    <!-- Styles -->
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Project Blue 💙 | Happy 21st Birthday, Pranathi">
+
+    <meta
+        property="og:description"
+        content="A handcrafted interactive birthday experience created especially for Pranathi's 21st Birthday.">
+
+    <meta
+        property="og:image"
+        content="preview.png">
+
+    <meta
+        property="og:type"
+        content="website">
+
+    <!-- Twitter / X -->
+    <meta
+        name="twitter:card"
+        content="summary_large_image">
+
+    <meta
+        name="twitter:title"
+        content="Project Blue 💙 | Happy 21st Birthday, Pranathi">
+
+    <meta
+        name="twitter:description"
+        content="A handcrafted interactive birthday experience created especially for Pranathi's 21st Birthday.">
+
+    <meta
+        name="twitter:image"
+        content="preview.png">
+
+</head>
+
+<body>
+    <!-- Premium Cursor Glow -->
+    <div id="cursorGlow"></div>
+<!-- =========================================
+        ANIMATED BACKGROUND
+========================================== -->
+
+<div id="background">
+
+    <div class="stars"></div>
+
+    <div class="stars2"></div>
+
+<div class="particles">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+</div>
+
+<!-- =========================================
+                LOADER
+========================================== -->
+
+<div
+    id="loader"
+    aria-live="polite">
+
+    <div class="loader-content">
+
+        <div class="loader-heart">
+            💙
+        </div>
+
+        <h1>PROJECT BLUE</h1>
+
+        <p class="loader-subtitle">
+            Preparing a little surprise...
+        </p>
+
+        <div class="progress-bar">
+
+            <div class="progress"></div>
+
+        </div>
+
+        <div class="loading-percent">
+            <span id="loadingValue">0</span>%
+        </div>
+
+        <p class="loader-status">
+            Loading memories...
+        </p>
+
+    </div>
+
+</div>
+
+<!-- =========================================
+           SCREEN 1 : WELCOME
+========================================== -->
+
+<section class="panel intro" id="welcome">
+
+    <div class="content">
+
+        <h1>Hey, Shivani 👋</h1>
+
+        <p>
+            Before your birthday gets filled with
+            messages, calls and Instagram stories...
+        </p>
+
+        <p>
+            I wanted you to receive
+            something a little different.
+        </p>
+
+        <p class="helper">
+            💙 Tap the button below to begin your birthday journey.
+        </p>
+
+        <button
+            type="button"
+            class="next-btn"
+            data-next="story"
+            aria-label="Begin the birthday journey">
+            Begin the Journey →
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+           SCREEN 2 : STORY
+========================================== -->
+
+<section class="panel story" id="story">
+
+    <div class="content">
+
+        <h2>Every year...</h2>
+
+        <p>
+            Birthday wishes come through messages.
+        </p>
+
+        <p>
+            Some arrive through calls.
+        </p>
+
+        <p>
+            Some appear on Instagram stories...
+            and disappear after 24 hours.
+        </p>
+
+
+        <p class="story-break">
+            But this year...
+        </p>
+
+        <p>
+            I wanted to do something different.
+        </p>
+
+        <p>
+            So instead of simply typing
+            <strong>"Happy Birthday"</strong>,
+            I decided to learn something completely new.
+        </p>
+
+        <p>
+            And built this little surprise...
+            just for you. 🎁
+        </p>
+
+        <p class="helper">
+
+            🎁 Your gift is waiting below.
+
+        </p>
+
+        <button
+            type="button"
+            class="next-btn"
+            data-next="gift"
+            aria-label="Open my birthday gift">
+
+            Open My Gift 🎁
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+         SCREEN 3 : GIFT BOX
+========================================== -->
+
+<section class="panel gift" id="gift">
+
+    <div class="content">
+
+        <h2>A Little Surprise Is Waiting...</h2>
+
+        <p>
+            It has your name on it.
+        </p>
+
+        <button
+            type="button"
+            id="giftBox"
+            class="gift-box"
+            aria-label="Open your birthday gift">
+
+            🎁
+
+        </button>
+
+        <p class="helper">
+
+            ✨ Tap the gift box to unwrap your surprise.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+      SCREEN 4 : BIRTHDAY REVEAL
+========================================== -->
+
+<section class="panel reveal" id="reveal">
+    <div
+        id="birthdayConfetti"
+        aria-hidden="true">
+    </div>
+    <div class="content">
+
+    <div class="birthday-photo reveal-photo">
+
+    <span class="photo-star star1">✨</span>
+    <span class="photo-star star2">✦</span>
+    <span class="photo-star star3">✦</span>
+    <span class="photo-star star4">✨</span>
+    <span class="photo-star star5">✦</span>
+
+    <img
+    src="assets/images/shivani-main.jpg"
+    alt="Portrait of Shivani smiling"
+    loading="lazy">
+
+</div>
+
+    <h1 class="reveal-title typewriter">
+    🎉 Happy 21st Birthday
+</h1>
+
+<h2 class="reveal-name typewriter">
+    Shivani 💙
+</h2>
+
+    <p class="birthday-message reveal-line line1">
+
+    Every birthday tells a story...
+
+</p>
+
+<p class="reveal-line line2">
+
+    This little website was carefully crafted
+    to celebrate your smile, your kindness,
+    and the wonderful person you are. 💙
+
+</p>
+
+<p class="helper reveal-line line3">
+
+    💙 There's much more waiting for you below.
+
+</p>
+
+<button
+    type="button"
+    class="next-btn reveal-button"
+    data-next="about"
+    aria-label="Continue to the next section">
+
+    Let's Begin →
+
+</button>
+
+</div>
+
+</section>
+<!-- =========================================
+ SCREEN 5 : A FEW LITTLE THINGS THAT MAKE YOU
+========================================== -->
+
+<section class="panel about" id="about">
+
+    <div class="content">
+
+        <h2>✨ A Few Little Things That Make You💙</h2>
+
+        <p class="subtitle">
+
+    Everyone has little things that make them unique.
+
+</p>
+
+<p class="subtitle subtitle-gap">
+
+    Here are a few little things I've come to know through our conversations and the memories we've shared.
+
+</p>
+
+        <p class="helper">
+            👇 Tap each card to reveal a fun little surprise.
+        </p>
+
+        <div class="card-container">
+
+            <!-- Coffee -->
+
+            <div class="card">
+
+                <div class="card-front">
+
+                    <h3>☕</h3>
+
+                    <h4>Morning Fuel</h4>
+
+                </div>
+
+                <div class="card-back">
+
+                    <h4>☕ Coffee Status</h4>
+
+                    <p>
+                        Every great day probably starts with a good cup of coffee.
+                    </p>
+
+                    <p>
+                        I don't think that's changing anytime soon. 😄
+                    </p>
+
+                    <p><strong>☕ Brewed to Perfection</strong></p>
+
+                </div>
+
+            </div>
+
+            <!-- Music -->
+
+            <div class="card">
+
+                <div class="card-front">
+
+                    <h3>🎧</h3>
+
+                    <h4>Daily Soundtrack</h4>
+
+                </div>
+
+                <div class="card-back">
+
+                    <h4>🎵 Now Playing...</h4>
+
+                    <p>
+                        Every playlist tells a story.
+                    </p>
+
+                    <p>
+                        Somehow, music always seems to be part of yours.
+                    </p>
+
+                    <p><strong>🎧 Playlist Worth Repeating</strong></p>
+
+                </div>
+
+            </div>
+
+            <!-- Dogs -->
+
+            <div class="card">
+
+                <div class="card-front">
+
+                    <h3>🐶</h3>
+
+                    <h4>Happiness Partner</h4>
+
+                </div>
+
+                <div class="card-back">
+
+                    <h4>🐾 Dog Friendship Report</h4>
+
+                    <p>
+                        Anyone who loves dogs usually has a kind heart too.
+                    </p>
+
+                    <p>
+                        I think that's true here. 🐶
+                    </p>
+
+                    <p><strong>🐾 Tail-Wag Approved</strong></p>
+
+                </div>
+
+            </div>
+
+            <!-- Roses -->
+
+            <div class="card">
+
+                <div class="card-front">
+
+                    <h3>🌹</h3>
+
+                    <h4>Little Favourite</h4>
+
+                </div>
+
+                <div class="card-back">
+
+                    <h4>🌹 Flower Report</h4>
+
+                    <p>
+                        Some flowers are beautiful...
+                    </p>
+
+                    <p>
+                        Somehow, red roses still seem to win every time.
+                    </p>
+
+                    <p><strong>🌹 Blooming Beautiful</strong></p>
+
+                </div>
+
+            </div>
+
+            <!-- Food -->
+
+            <div class="card">
+
+                <div class="card-front">
+
+                    <h3>🍽️</h3>
+
+                    <h4>Comfort Zone</h4>
+
+                </div>
+
+                <div class="card-back">
+
+                    <h4>😋 Today's Perfect Menu</h4>
+
+                    <p>🍗 Biryani ✔</p>
+
+                    <p>🥣 Panipuri ✔</p>
+
+                    <p>
+                        A perfect day probably includes both. 😄
+                    </p>
+
+                    <p><strong>😋 Taste Buds Approved</strong></p>
+
+                </div>
+
+            </div>
+
+            <!-- Blue -->
+
+            <div class="card">
+
+                <div class="card-front">
+
+                    <h3>💙</h3>
+
+                    <h4>Signature Colour</h4>
+
+                </div>
+
+                <div class="card-back">
+
+                    <h4>💙 Project Blue</h4>
+
+                    <p>
+                        Maybe that's why...
+                    </p>
+
+                    <p>
+                        Project Blue felt like the perfect name for this surprise.
+                    </p>
+
+                    <p><strong>💙 Project Blue Certified</strong></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+            id="cardsComplete"
+            class="cards-complete"
+            aria-live="polite">
+
+            <h3>✨ Nice!</h3>
+
+            <p>
+                Looks like you've unlocked all the little things
+                Project Blue knows about you.
+            </p>
+
+            <p>
+                Ready for the next chapter? 💙
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="next-btn"
+            data-next="scanner"
+            aria-label="Continue to Personality Scanner">
+
+            Continue →
+
+        </button>
+
+    </div>
+
+</section>
+<!-- =========================================
+        SCREEN 6 : PERSONALITY SCAN
+========================================== -->
+
+<section class="panel scanner" id="scanner">
+
+    <div class="content">
+
+        <div class="scanner-badge">
+
+    🔹 AI Personality Scanner v21.0
+
+</div>
+
+<h1 class="scanner-title">
+
+    Personality Analysis
+
+</h1>
+
+<p class="scanner-subtitle">
+
+    Running birthday diagnostics...
+    Please wait while the system analyzes the data.
+
+</p>
+<div
+    class="scan-progress"
+    aria-label="Personality scan progress">
+
+    <div class="scan-progress-fill"></div>
+
+</div>
+
+        <div class="scan-box">
+
+    <p class="scan-item">☕ Coffee Energy ............100%</p>
+
+    <p class="scan-item">🎧 Music Mode ..............99%</p>
+
+    <p class="scan-item">🍗 Comfort Food ............Biryani ✔</p>
+
+    <p class="scan-item">🥣 Street Food .............Panipuri ✔</p>
+
+    <p class="scan-item">🐶 Dog Friendliness ........100%</p>
+
+    <p class="scan-item">🌹 Rose Appreciation .......100%</p>
+
+    <p class="scan-item">💙 Favourite Colour ........Blue</p>
+
+</div>
+<div
+    class="scan-result"
+    aria-live="polite">
+
+    <p class="scan-line">Generating Final Report...</p>
+
+    <p class="scan-line">✔ Coffee Lover Confirmed</p>
+
+    <p class="scan-line">✔ Music Lover Confirmed</p>
+
+    <p class="scan-line">✔ Dog Lover Confirmed</p>
+
+    <p class="scan-line">✔ Foodie Confirmed</p>
+
+    <p class="scan-line">✔ Birthday Ready</p>
+
+    <h3 class="scan-line">
+        ✨ Officially Awesome ✨
+    </h3>
+
+</div>
+
+        <p class="helper">
+
+            📖 Your story continues below.
+
+        </p>
+
+        <button
+            type="button"
+            class="next-btn"
+            data-next="letter"
+            aria-label="Continue to Birthday Letter">
+
+            Continue →
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+            SCREEN 7 : LETTER
+========================================== -->
+
+<section class="panel letter" id="letter">
+
+    <div class="content">
+
+        <h2 class="letter-title">
+    💌 A Small Note from Your Cousin & Friend, Dinesh
+</h2>
+
+        <div class="letter-box letter-card">
+
+            <p class="letter-line"><strong>Hey Shivani,</strong></p>
+
+            <p class="letter-line">
+                If you've made it this far,
+                thank you for taking this little journey with me. 😊
+            </p>
+
+            <p class="letter-line">
+                Every birthday brings lots of wishes.
+                Some arrive through messages,
+                some through calls,
+                and some through Instagram stories that disappear after a day.
+            </p>
+
+            <p class="letter-line">
+                This year,
+                I wanted your birthday wish to be a little different.
+            </p>
+
+            <p class="letter-line">
+                So instead of simply typing
+                <strong>"Happy Birthday"</strong>,
+                I decided to learn something completely new
+                and build this website just for you.
+            </p>
+
+            <p class="letter-line">
+                Looking back,
+                it's amazing how our friendship has grown.
+                From meeting occasionally at family functions,
+                to that memorable conversation after my schooling,
+                and now sharing reels, random chats,
+                and regular conversations...
+                it's been a wonderful journey.
+            </p>
+
+            <p class="letter-line">
+                Thank you for being such a wonderful cousin
+                and an amazing friend.
+            </p>
+
+            <p class="letter-line">
+                I hope this little surprise made you smile
+                and becomes one of those birthday memories
+                you'll remember for a long time.
+            </p>
+
+            <p class="letter-line">
+                Wishing you a year filled with happiness,
+                good health,
+                lots of coffee ☕,
+                amazing music 🎧,
+                delicious biryani 🍗,
+                tasty panipuri 🥣,
+                beautiful moments,
+                and countless reasons to smile.
+            </p>
+
+            <p class="letter-line">
+                Happy 21st Birthday, Shivani! 🎉
+            </p>
+
+            <p class="letter-line">
+
+    <strong>With lots of good wishes,</strong>
+
+</p>
+
+<p class="letter-line signature">
+
+    <strong>Your Cousin & Friend,</strong>
+
+</p>
+
+<p class="letter-line signature-name">
+
+    <strong>Dinesh 💙</strong>
+
+</p>
+
+
+    </div>
+
+        <button
+            type="button"
+            class="next-btn"
+            data-next="memory"
+            aria-label="Continue to Memory Jar">
+
+            One More Surprise →
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+            SCREEN 8 : MEMORY JAR
+========================================== -->
+
+<section class="panel memory" id="memory">
+
+    <div class="content">
+
+        <h2>🫙 Memory Jar</h2>
+
+        <p class="subtitle">
+
+            Some memories aren't measured by how often we met,
+            but by how naturally the friendship grew over time.
+
+        </p>
+
+        <p id="memoryHelper" class="helper">
+
+            🫙 There are <strong>5 little memories</strong> hidden inside.
+            <br><br>
+            <span id="memoryProgress">0 / 5 Memories Unlocked</span>
+            <br><br>
+            👇 Tap the jar to unlock the first one.
+
+        </p>
+
+        <div class="memory-area">
+
+            <div id="memoryJar" class="memory-jar">
+
+    <div class="jar-glow"></div>
+
+    🫙
+
+</div>
+
+<div
+    id="memoryText"
+    class="memory-text"
+    aria-live="polite">
+
+    Tap the jar to begin your little memory journey... 💙
+
+</div>
+
+        </div>
+
+        <!-- Updated: Now goes to Timeline -->
+        <button
+    type="button"
+    class="next-btn"
+    data-next="timeline"
+    aria-label="Continue to Timeline">
+
+    Continue →
+
+</button>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+        SCREEN 9 : TIMELINE
+========================================== -->
+
+<section class="panel" id="timeline">
+
+    <div class="glass">
+
+        <h2>✨ Our Journey</h2>
+
+        <p class="timeline-subtitle">
+            Every friendship has a story.
+            Here's a little journey through ours. 💙
+        </p>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" tabindex="0">
+                    <h3>🏡 Childhood</h3>
+                    <p>
+                        We didn't spend every day together,
+                        but family gatherings quietly created little memories.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" tabindex="0">
+                    <h3>🎓 School Days</h3>
+                    <p>
+                        Life took us on different paths,
+                        yet those familiar faces always remained.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" tabindex="0">
+                    <h3>💬 Friendship Begins</h3>
+                    <p>
+                        One conversation after my schooling
+                        slowly became something much more meaningful.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" tabindex="0">
+                    <h3>😂 Countless Chats</h3>
+                    <p>
+                        Reels, random conversations,
+                        laughter, and countless little moments
+                        slowly made our friendship stronger.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" tabindex="0">
+                    <h3>🎂 Today</h3>
+                    <p>
+    And today...
+    this little website becomes
+    one more happy memory to look back on.
+</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+          SCREEN 10 : AWARD
+========================================== -->
+
+<section class="panel award" id="award">
+
+    <div class="content">
+
+        <h1 aria-label="Golden Trophy">🏆</h1>
+
+        <h2>The Golden Friendship Award</h2>
+
+        <h3>Proudly Presented to</h3>
+
+        <h1>Shivani Sri Pranathi</h1>
+
+        <p>
+
+            For being an amazing cousin,
+            a wonderful friend,
+            and someone who makes conversations
+            feel easy, genuine, and memorable.
+
+        </p>
+
+        <button
+            type="button"
+            class="next-btn"
+            data-next="celebration"
+            aria-label="Accept the Golden Friendship Award">
+
+            Accept Award →
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+          SCREEN 11 : CELEBRATION
+========================================== -->
+
+<section class="panel celebration" id="celebration">
+    <div class="balloons">
+
+    <span class="balloon balloon1">🎈</span>
+
+    <span class="balloon balloon2">🎈</span>
+
+    <span class="balloon balloon3">🎈</span>
+
+</div>
+
+    <div class="content">
+        <div class="celebration-badge">
+
+    ✨ Cheers to New Adventures, Happy Memories, and an Amazing Year Ahead! ✨
+
+</div>
+
+        <h1 class="celebration-title">🎉 Happy 21st Birthday 🎉</h1>
+
+        <h2 class="celebration-name">Shivani 💙</h2>
+
+        <p class="celebration-message">
+
+            Hope this year brings countless smiles,
+            beautiful memories,
+            amazing playlists,
+            soulful biryani,
+            flavourful panipuri,
+            and endless happiness.
+            You truly deserve every bit of it. 💙
+        </p>
+
+        <button
+            type="button"
+            class="next-btn celebration-button"
+            data-next="end"
+            aria-label="Go to the final message">
+
+
+            One Last Click →
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+          SCREEN 12 : END
+========================================== -->
+
+<section class="panel end" id="end">
+
+    <div class="content">
+
+        <h2 class="end-line">
+            Some gifts are bought.
+        </h2>
+
+        <h1 class="end-line">
+            This one was built.
+        </h1>
+
+        <h3 class="end-line">
+            Especially for you, Pranathi 💙
+        </h3>
+
+        <br>
+
+        <p class="end-line end-gap">
+    Project Blue 💙
+</p>
+
+<p class="end-line">
+    Mission: Make Shivani Smile 😊
+</p>
+
+<p class="end-line">
+    Status: Mission Accomplished ✓
+</p>
+
+<br>
+
+<p class="end-line">
+    🌟 One Chapter Ends,
+    <br>
+    Another Wonderful Year Begins. 🌟
+</p>
+
+<br>
+
+<p class="end-line">
+    Thank you for taking this little birthday journey, Shivani. 💙
+</p>
+
+<br>
+
+<p class="end-line">
+    Wishing you a wonderful year filled with happiness,
+    good health, success,
+    and countless reasons to smile every single day 💙
+</p>
+
+<br>
+
+<p class="end-line">
+    With lots of good wishes,
+</p>
+
+<p class="end-line">
+    Your Cousin & Friend,
+</p>
+
+<h2 class="end-line">
+    Dinesh 💙
+</h2>
+
+<p class="end-line">
+    Carefully crafted to celebrate your 21st Birthday.
+</p>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
