@@ -176,7 +176,7 @@ if (loader && progress) {
 
         value++;
 
-        progress.style.width = value + "%";
+        progress.style.transform = `scaleX(${value / 100})`;
 
         if (loadingValue) {
             loadingValue.textContent = value;
