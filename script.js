@@ -31,19 +31,19 @@ function typeWriter(element, speed = 40){
 
     return new Promise(resolve=>{
 
-        let i = 0;
+        let i=0;
 
-        const typing = setInterval(()=>{
+        const typing=setInterval(()=>{
 
-            element.textContent += text.charAt(i);
+            element.textContent+=text.charAt(i);
 
             i++;
 
-            if(i >= text.length){
+            if(i>=text.length){
 
                 clearInterval(typing);
 
-                element.style.borderRight = "none";
+                element.style.borderRight="none";
 
                 resolve();
 
@@ -59,7 +59,7 @@ async function playRevealSequence(){
 
     if(revealPlayed) return;
 
-    revealPlayed = true;
+    revealPlayed=true;
 
     if(revealPhoto){
 
@@ -67,17 +67,21 @@ async function playRevealSequence(){
 
     }
 
-    await new Promise(r=>setTimeout(r,700));
+    await new Promise(r => setTimeout(r,250));
 
-    await typeWriter(revealTitle,55);
+    if (revealTitle) {
+        revealTitle.classList.add("show");
+    }
 
-    await typeWriter(revealName,55);
+    await new Promise(r => setTimeout(r,250));
+
+    await typeWriter(revealName,35);
 
     for(const line of revealLines){
 
-        line.classList.add("show");
+        await new Promise(r=>setTimeout(r,120));
 
-        await new Promise(r=>setTimeout(r,550));
+        line.classList.add("show");
 
     }
 
@@ -89,13 +93,15 @@ async function playRevealSequence(){
 
 }
 
-const revealObserver = new IntersectionObserver(entries=>{
+const revealObserver=new IntersectionObserver(entries=>{
 
     entries.forEach(entry=>{
 
         if(entry.isIntersecting){
 
             playRevealSequence();
+
+            revealObserver.unobserve(entry.target);
 
         }
 
@@ -108,6 +114,49 @@ const revealObserver = new IntersectionObserver(entries=>{
 if(revealSection){
 
     revealObserver.observe(revealSection);
+
+}
+function smoothScrollTo(target, duration = 560, onComplete = null) {
+
+    const start = window.pageYOffset;
+    const end = target.getBoundingClientRect().top + window.pageYOffset;
+    const distance = end - start;
+
+    let startTime = null;
+
+    function easeInOutCubic(t) {
+        return t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function animation(currentTime) {
+
+        if (!startTime) startTime = currentTime;
+
+        const elapsed = currentTime - startTime;
+
+        const progress = Math.min(elapsed / duration, 1);
+
+        const eased = easeInOutCubic(progress);
+
+        window.scrollTo(0, start + distance * eased);
+
+        if (progress < 1) {
+
+            requestAnimationFrame(animation);
+
+        } else {
+
+            if (typeof onComplete === "function") {
+                onComplete();
+            }
+
+        }
+
+    }
+
+    requestAnimationFrame(animation);
 
 }
     /* ==========================================
@@ -160,60 +209,73 @@ if (loader && progress) {
 
 }
 
-    /* ==========================================
-            CONTINUE BUTTONS
-    ========================================== */
-
-    const buttons = document.querySelectorAll(".next-btn");
-
-    buttons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const next = button.dataset.next;
-            const section = document.getElementById(next);
-
-            if (section) {
-
-                section.scrollIntoView({
-
-                    behavior: "smooth",
-                    block: "start"
-
-                });
-
-            }
-
-        });
-
-    });
-    /* ==========================================
-        CONTENT REVEAL ANIMATION
+/* ==========================================
+        CINEMATIC PAGE TRANSITION
 ========================================== */
+let isNavigating = false;
+const buttons = document.querySelectorAll(".next-btn");
+const pageTransition = document.getElementById("pageTransition");
+const celebrationOverlay = document.getElementById("celebrationOverlay");
 
-const contents = document.querySelectorAll(".content");
+buttons.forEach(button=>{
 
-const contentObserver = new IntersectionObserver((entries) => {
+    button.addEventListener("click",()=>{
 
-    entries.forEach(entry => {
+        if (isNavigating) return;
 
-        if(entry.isIntersecting){
+        isNavigating = true;
 
-            entry.target.classList.add("show");
+        const next = button.dataset.next;
+        const section = document.getElementById(next);
+
+        if(!section) return;
+
+        /* Award Button Celebration */
+        if(next === "celebration" && celebrationOverlay){
+
+            celebrationOverlay.classList.add("active");
+
+            setTimeout(()=>{
+
+                celebrationOverlay.classList.remove("active");
+
+            },2200);
 
         }
 
+        const nextContent = section.querySelector(".content");
+
+        smoothScrollTo(section, 560, () => {
+
+            if (nextContent) {
+                nextContent.classList.add("show");
+            }
+
+            isNavigating = false;
+
+        });
+
+ /*       pageTransition.classList.add("show");
+
+        setTimeout(()=>{
+
+            section.scrollIntoView({
+
+                behavior:"smooth",
+                block:"start"
+
+            });
+
+        },220);
+
+        setTimeout(()=>{
+
+            pageTransition.classList.remove("show");
+
+        },650);
+*/
+
     });
-
-},{
-
-    threshold:0.15
-
-});
-
-contents.forEach(content=>{
-
-    contentObserver.observe(content);
 
 });
 
@@ -222,48 +284,61 @@ contents.forEach(content=>{
 ========================================== */
 
 const gift = document.getElementById("giftBox");
+const giftFlash = document.getElementById("giftFlash");
+
+let giftOpening = false;
 
 if (gift) {
 
     gift.addEventListener("click", () => {
 
-        gift.style.transform = "scale(.8)";
+        if (giftOpening) return;
+        giftOpening = true;
+
+        /* Instant Press Effect */
+        gift.style.transform = "scale(0.96)";
 
         setTimeout(() => {
 
-            gift.style.transform = "scale(1.15)";
+            gift.style.transform = "";
+            gift.classList.add("open");
 
-        }, 200);
+        }, 70);
 
-        setTimeout(() => {
+        /* Flash starts almost immediately */
+        if (giftFlash) {
 
-            gift.style.transform = "scale(1)";
+            setTimeout(() => {
 
-        }, 400);
+                giftFlash.classList.add("show");
 
+            }, 100);
+
+        }
+
+        /* Move to reveal sooner */
         setTimeout(() => {
 
             const reveal = document.getElementById("reveal");
 
-            if (reveal) {
+            if (!reveal) return;
 
-                reveal.scrollIntoView({
+            smoothScrollTo(reveal, 500, () => {
 
-                    behavior: "smooth",
-                    block: "start"
-
-                });
+                playRevealSequence();
 
                 setTimeout(() => {
 
                     launchConfetti();
                     launchSparkles();
 
-                }, 300);
+                }, 120);
 
-            }
+                giftOpening = false;
 
-        }, 300);
+            });
+
+        }, 320);
 
     });
 
@@ -283,7 +358,6 @@ cards.forEach(card => {
 
     card.addEventListener("click", () => {
 
-        // Close all other cards
         cards.forEach(c => {
 
             if (c !== card) {
@@ -294,10 +368,8 @@ cards.forEach(card => {
 
         });
 
-        // Toggle current card
         card.classList.toggle("flipped");
 
-        // Count first-time visits only
         if (!visitedCards.has(card)) {
 
             visitedCards.add(card);
@@ -305,7 +377,6 @@ cards.forEach(card => {
 
         }
 
-        // Show completion after all cards have been viewed
         if (openedCards === cards.length && cardsComplete) {
 
             setTimeout(() => {
@@ -341,15 +412,13 @@ const letterObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting && !letterPlayed) {
 
             letterPlayed = true;
+            letterObserver.unobserve(entry.target);
 
             const letterBox = letterSection.querySelector(".letter-box");
 
             const lines = letterSection.querySelectorAll(".letter-line");
 
-            // Show the letter card first
             letterBox.classList.add("show");
-
-            // Reveal each paragraph one by one
             lines.forEach((line, index) => {
 
                 setTimeout(() => {
@@ -395,47 +464,45 @@ const memoryJar = document.getElementById("memoryJar");
 const memoryText = document.getElementById("memoryText");
 const memoryHelper = document.getElementById("memoryHelper");
 const memoryProgress = document.getElementById("memoryProgress");
+const memoryCard = document.querySelector(".memory-card");
 
 let currentMemory = 0;
 
 if (memoryJar && memoryText) {
 
-    // Initial state
     memoryText.classList.add("show");
 
     memoryJar.addEventListener("click", () => {
-        // Magical particles
 
-for(let i = 0; i < 10; i++){
+        for(let i = 0; i < 10; i++){
 
-    const particle = document.createElement("span");
+            const particle = document.createElement("span");
 
-    particle.className = "memory-particle";
+            particle.className = "memory-particle";
 
-    particle.style.left = "50%";
-    particle.style.top = "50%";
+            particle.style.left = "50%";
+            particle.style.top = "50%";
 
-    particle.style.setProperty(
-        "--x",
-        (Math.random()*140-70)+"px"
-    );
+            particle.style.setProperty(
+                "--x",
+                (Math.random()*140-70)+"px"
+            );
 
-    particle.style.setProperty(
-        "--y",
-        (-Math.random()*120-30)+"px"
-    );
+            particle.style.setProperty(
+                "--y",
+                (-Math.random()*120-30)+"px"
+            );
 
-    memoryJar.appendChild(particle);
+            memoryJar.appendChild(particle);
 
-    setTimeout(()=>{
+            setTimeout(()=>{
 
-        particle.remove();
+                particle.remove();
 
-    },900);
+            },900);
 
-}
+        }
 
-        // Jar bounce animation
         memoryJar.style.transform = "scale(.88) rotate(-10deg)";
 
         setTimeout(() => {
@@ -449,46 +516,72 @@ for(let i = 0; i < 10; i++){
             memoryJar.style.transform = "scale(1)";
 
         }, 240);
-
-        // Hide current memory card
         memoryText.classList.remove("show");
         memoryText.classList.add("hide");
 
         setTimeout(() => {
 
             memoryText.innerHTML = memories[currentMemory];
-
-            // Show new memory card
             memoryText.classList.remove("hide");
             memoryText.classList.add("show");
+
+            if (window.innerWidth > 768) {
+
+                setTimeout(() => {
+
+                    memoryText.scrollIntoView({
+
+                        behavior: "smooth",
+                        block: "center"
+
+                    });
+
+                },150);
+
+            }
 
             currentMemory++;
 
             memoryProgress.textContent =
                 `${currentMemory} / ${memories.length} Memories Unlocked`;
+                memoryProgress.style.transform = "scale(1.15)";
 
-            if (currentMemory < memories.length) {
+                setTimeout(() => {
+
+                    memoryProgress.style.transform = "scale(1)";
+
+                }, 250);
+
+                if (currentMemory < memories.length) {
+
+                    memoryHelper.innerHTML = `
+                        🫙 There are <strong>${memories.length} little memories</strong>
+                        hidden inside.
+                        <br><br>
+                        👇 Tap the jar again to unlock another memory.
+                    `;
+
+                } else {
 
                 memoryHelper.innerHTML = `
-                    🫙 There are <strong>${memories.length} little memories</strong>
-                    hidden inside.
-                    <br><br>
-                    <span id="memoryProgress">${currentMemory} / ${memories.length} Memories Unlocked</span>
-                    <br><br>
-                    👇 Tap the jar again to unlock another memory.
-                `;
-
-            } else {
-
-                memoryHelper.innerHTML = `
-                    ✅ <strong>${memories.length} / ${memories.length} Memories Unlocked</strong>
-                    <br><br>
                     ✨ You've unlocked every memory in the jar.
-                    <br>
-                    Ready for the next chapter? 💙
+                    <br><br>
+                    Ready for the next chapter 💙
                 `;
+                launchConfetti();
+                launchSparkles();
+                memoryJar.style.pointerEvents = "none";
+                memoryJar.style.opacity = ".7";
+                memoryJar.classList.add("completed");
+                if(window.innerWidth <= 768){
 
-                currentMemory = 0;
+                    document.querySelector(".progress-counter").style.display = "none";
+
+                    document
+                        .querySelector(".memory-continue")
+                        .classList.add("show");
+
+                }
 
             }
 
@@ -589,6 +682,7 @@ function launchSparkles(){
 ========================================== */
 
 const timelineItems = document.querySelectorAll(".timeline-item");
+const timeline = document.querySelector(".timeline");
 
 const timelineObserver = new IntersectionObserver((entries) => {
 
@@ -597,6 +691,13 @@ const timelineObserver = new IntersectionObserver((entries) => {
         if(entry.isIntersecting){
 
             entry.target.classList.add("show");
+
+
+            if(timeline){
+
+                timeline.classList.add("draw");
+
+            }
 
         }
 
@@ -629,66 +730,50 @@ const scannerObserver = new IntersectionObserver((entries)=>{
         if(entry.isIntersecting && !scannerPlayed){
 
             scannerPlayed = true;
+            scannerObserver.unobserve(entry.target);
 
-            let progress = 0;
+            scanBar.style.transition = "width 1.5s linear";
+            scanBar.style.width = "100%";
 
-            const loading = setInterval(()=>{
+            setTimeout(() => {
 
-                progress++;
+                const items = document.querySelectorAll(".scan-item");
 
-                scanBar.style.width = progress + "%";
+                const result = document.querySelector(".scan-result");
 
-                if(progress >= 100){
+                const lines = document.querySelectorAll(".scan-line");
 
-                    clearInterval(loading);
-
-                    const items = document.querySelectorAll(".scan-item");
-
-                    const result = document.querySelector(".scan-result");
-
-                    const lines = document.querySelectorAll(".scan-line");
-
-                    /* Reveal scan items */
-
-                    items.forEach((item,index)=>{
-
-                        setTimeout(()=>{
-
-                            item.classList.add("show");
-
-                        },index*250);
-
-                    });
-
-                    /* Show report box */
+                items.forEach((item,index)=>{
 
                     setTimeout(()=>{
 
-                        if(result){
+                        item.classList.add("show");
 
-                            result.classList.add("show");
+                    },index*140);
 
-                        }
+                });
 
-                    },items.length*250+400);
+                setTimeout(()=>{
 
-                    /* Reveal report lines */
+                    if(result){
 
-                    lines.forEach((line,index)=>{
+                        result.classList.add("show");
 
-                        setTimeout(()=>{
+                    }
 
-                            line.classList.add("show");
+                },items.length*140+180);
 
-                        },
+                lines.forEach((line,index)=>{
 
-                        items.length*250+700+(index*350));
+                    setTimeout(()=>{
 
-                    });
+                        line.classList.add("show");
 
-                }
+                    },items.length*140+300+(index*170));
 
-            },20);
+                });
+
+            },1500);
 
         }
 
@@ -719,7 +804,7 @@ const endObserver = new IntersectionObserver((entries)=>{
         if(entry.isIntersecting && !endPlayed){
 
             endPlayed = true;
-
+            endObserver.unobserve(entry.target);
             const lines = document.querySelectorAll(".end-line");
 
             lines.forEach((line,index)=>{
@@ -727,6 +812,18 @@ const endObserver = new IntersectionObserver((entries)=>{
                 setTimeout(()=>{
 
                     line.classList.add("show");
+
+                    if(index === lines.length-1){
+
+                        setTimeout(()=>{
+
+                            document
+                                .querySelector(".shooting-star")
+                                ?.classList.add("show");
+
+                        },900);
+
+                    }
 
                 },index*700);
 
@@ -737,7 +834,7 @@ const endObserver = new IntersectionObserver((entries)=>{
     });
 
 },{
-    threshold:.45
+    threshold:.35
 });
 
 if(endSection){
@@ -761,6 +858,7 @@ const awardObserver = new IntersectionObserver((entries)=>{
         if(entry.isIntersecting && !awardPlayed){
 
             awardPlayed = true;
+            awardObserver.unobserve(entry.target);
 
             awardContent.classList.add("show");
 
@@ -798,28 +896,34 @@ const celebrationObserver = new IntersectionObserver((entries)=>{
         if(entry.isIntersecting && !celebrationPlayed){
 
             celebrationPlayed = true;
+            celebrationObserver.unobserve(entry.target);
+            launchBlueConfetti();
 
             setTimeout(()=>{
 
-                celebrationTitle.classList.add("show");
+                if (celebrationTitle)
+                    celebrationTitle.classList.add("show");
 
             },300);
 
             setTimeout(()=>{
 
-                celebrationName.classList.add("show");
+                if (celebrationName)
+                    celebrationName.classList.add("show");
 
             },900);
 
             setTimeout(()=>{
 
-                celebrationMessage.classList.add("show");
+                if (celebrationMessage)
+                    celebrationMessage.classList.add("show");
 
             },1500);
 
             setTimeout(()=>{
 
-                celebrationButton.classList.add("show");
+                if (celebrationButton)
+                    celebrationButton.classList.add("show");
 
             },2200);
 
@@ -849,6 +953,7 @@ const typeObserver = new IntersectionObserver((entries)=>{
         if(entry.isIntersecting){
 
             entry.target.classList.add("start");
+            typeObserver.unobserve(entry.target);
 
         }
 
@@ -868,7 +973,7 @@ typewriters.forEach(item=>{
 /* ==========================================
         PREMIUM CURSOR GLOW
 ========================================== */
-
+/*
 const cursorGlow = document.getElementById("cursorGlow");
 
 if(cursorGlow){
@@ -909,20 +1014,104 @@ hoverElements.forEach(item=>{
 
     item.addEventListener("mouseenter",()=>{
 
-        cursorGlow.style.width = "52px";
-        cursorGlow.style.height = "52px";
+        cursorGlow.style.width = "58px";
+        cursorGlow.style.height = "58px";
         cursorGlow.style.opacity = "1";
+        cursorGlow.style.filter = "blur(7px)";
 
     });
 
     item.addEventListener("mouseleave",()=>{
 
-        cursorGlow.style.width = "28px";
-        cursorGlow.style.height = "28px";
-        cursorGlow.style.opacity = ".85";
+        cursorGlow.style.width = "34px";
+        cursorGlow.style.height = "34px";
+        cursorGlow.style.opacity = ".9";
+        cursorGlow.style.filter = "blur(4px)";
 
     });
 
 });
+/* ==========================================
+        HERO WAVE
+========================================== */
+
+function waveHeroHand(){
+
+    const hand = document.getElementById("heroWave");
+
+    if(!hand) return;
+
+    hand.animate([
+
+        { transform:"rotate(0deg)" },
+        { transform:"rotate(18deg)" },
+        { transform:"rotate(-12deg)" },
+        { transform:"rotate(18deg)" },
+        { transform:"rotate(-8deg)" },
+        { transform:"rotate(12deg)" },
+        { transform:"rotate(0deg)" }
+
+    ],{
+
+        duration:1400,
+        easing:"ease-in-out"
+
+    });
+
+}
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        waveHeroHand();
+
+    }, 800);
+
+});
+/* ==========================================
+        PREMIUM CONFETTI
+========================================== */
+
+function launchBlueConfetti(){
+
+    const container=document.getElementById("confettiContainer");
+
+    if(!container) return;
+
+    const colors=[
+        "#60A5FA",
+        "#7DD3FC",
+        "#A5D8FF",
+        "#FFFFFF"
+    ];
+
+    for(let i=0;i<120;i++){
+
+        const piece=document.createElement("span");
+
+        piece.className="confetti";
+
+        piece.style.left=Math.random()*100+"%";
+
+        piece.style.background=
+            colors[Math.floor(Math.random()*colors.length)];
+
+        piece.style.animationDelay=
+            Math.random()*1.2+"s";
+
+        piece.style.transform=
+            `rotate(${Math.random()*360}deg)`;
+
+        container.appendChild(piece);
+
+        setTimeout(()=>{
+
+            piece.remove();
+
+        },4000);
+
+    }
+
+}
 
 });

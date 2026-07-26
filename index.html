@@ -11,7 +11,7 @@
         content="width=device-width, initial-scale=1.0">
 
     <!-- SEO -->
-    <title>Project Blue 💙 | Happy 21st Birthday, Pranathi</title>
+    <title>Project Blue 💙 | Happy 21st Birthday, Shivani</title>
 
     <meta
         name="description"
@@ -31,10 +31,7 @@
         content="#3B82F6">
 
     <!-- Favicon -->
-    <link
-        rel="icon"
-        type="image/png"
-        href="favicon.png">
+    <link rel="icon" href="assets/favicon.png">
 
     <!-- Styles -->
     <link
@@ -92,36 +89,44 @@
 </head>
 
 <body>
-    <!-- Premium Cursor Glow -->
-    <div id="cursorGlow"></div>
+   <!-- <div id="cursorGlow"></div>-->
+    <div id="pageTransition"></div>
+    <!-- ==========================================
+        CELEBRATION OVERLAY
+========================================== -->
+
+    <div id="celebrationOverlay">
+
+        <div class="celebrationGlow"></div>
+
+    </div>
 <!-- =========================================
         ANIMATED BACKGROUND
 ========================================== -->
+    <div id="background">
 
-<div id="background">
+        <div class="stars"></div>
 
-    <div class="stars"></div>
+        <div class="stars2"></div>
 
-    <div class="stars2"></div>
+    <div class="particles">
 
-<div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
 
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+    </div>
 
-</div>
-
-</div>
+    </div>
 
 <!-- =========================================
                 LOADER
@@ -169,7 +174,9 @@
 
     <div class="content">
 
-        <h1>Hey, Shivani 👋</h1>
+        <h1 class="hero-title">
+            Hey, Shivani <span id="heroWave">👋</span>
+        </h1>
 
         <p>
             Before your birthday gets filled with
@@ -266,7 +273,7 @@
 ========================================== -->
 
 <section class="panel gift" id="gift">
-
+<div id="giftFlash" class="gift-flash"></div>
     <div class="content">
 
         <h2>A Little Surprise Is Waiting...</h2>
@@ -294,74 +301,69 @@
     </div>
 
 </section>
-
 <!-- =========================================
       SCREEN 4 : BIRTHDAY REVEAL
 ========================================== -->
 
 <section class="panel reveal" id="reveal">
-    <div
-        id="birthdayConfetti"
-        aria-hidden="true">
-    </div>
+
+    <div id="birthdayConfetti" aria-hidden="true"></div>
+
     <div class="content">
 
-    <div class="birthday-photo reveal-photo">
+        <div class="birthday-photo reveal-photo">
 
-    <span class="photo-star star1">✨</span>
-    <span class="photo-star star2">✦</span>
-    <span class="photo-star star3">✦</span>
-    <span class="photo-star star4">✨</span>
-    <span class="photo-star star5">✦</span>
+            <span class="photo-star star1">✨</span>
+            <span class="photo-star star2">✦</span>
+            <span class="photo-star star3">✦</span>
+            <span class="photo-star star4">✨</span>
+            <span class="photo-star star5">✦</span>
 
-    <img
-    src="assets/images/shivani-main.jpg"
-    alt="Portrait of Shivani smiling"
-    loading="lazy">
+            <img
+                src="assets/images/shivani-main.jpg"
+                width="420"
+                height="520"
+                alt="Portrait of Shivani smiling"
+                loading="lazy">
 
-</div>
+        </div>
 
-<h1 class="reveal-title typewriter">
-    Happy<br>
-    21st<br>
-    Birthday
-</h1>
+        <h1 class="reveal-title">
+            Happy<br>
+            21st<br>
+            Birthday
+        </h1>
 
-<h2 class="reveal-name typewriter">
-    Shivani 💙
-</h2>
+        <h2 class="reveal-name typewriter">
+            Shivani <span class="heart">💙</span>
+        </h2>
 
-    <p class="birthday-message reveal-line line1">
+        <p class="birthday-message reveal-line line1">
+            Every birthday tells a story...
+        </p>
 
-    Every birthday tells a story...
+        <p class="reveal-line line2">
+            This little website was carefully crafted
+            to celebrate your smile,
+            your kindness,
+            and the wonderful person you are. 💙
+        </p>
 
-</p>
+        <p class="helper reveal-line line3">
+            💙 There's much more waiting for you below.
+        </p>
 
-<p class="reveal-line line2">
+        <button
+            type="button"
+            class="next-btn reveal-button"
+            data-next="about"
+            aria-label="Continue">
 
-    This little website was carefully crafted
-    to celebrate your smile, your kindness,
-    and the wonderful person you are. 💙
+            Let's Begin →
 
-</p>
+        </button>
 
-<p class="helper reveal-line line3">
-
-    💙 There's much more waiting for you below.
-
-</p>
-
-<button
-    type="button"
-    class="next-btn reveal-button"
-    data-next="about"
-    aria-label="Continue to the next section">
-
-    Let's Begin →
-
-</button>
-
-</div>
+    </div>
 
 </section>
 <!-- =========================================
@@ -633,7 +635,11 @@
 </p>
 <div
     class="scan-progress"
-    aria-label="Personality scan progress">
+    role="progressbar"
+    aria-label="Personality scan progress"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="100">
 
     <div class="scan-progress-fill"></div>
 
@@ -705,9 +711,14 @@
 <section class="panel letter" id="letter">
 
     <div class="content">
+        <div class="letter-sparkles">
+
+    ✨ ✦ ✨
+
+</div>
 
         <h2 class="letter-title">
-    💌 A Small Note from Your Cousin & Friend, Dinesh
+    💌 A Letter Just For You
 </h2>
 
         <div class="letter-box letter-card">
@@ -782,15 +793,12 @@
 
 <p class="letter-line signature">
 
-    <strong>Your Cousin & Friend,</strong>
+<span class="signature-writing">
+    Dinesh 💙
+</span>
 
 </p>
 
-<p class="letter-line signature-name">
-
-    <strong>Dinesh 💙</strong>
-
-</p>
 
 
     </div>
@@ -826,41 +834,49 @@
 
         </p>
 
-        <p id="memoryHelper" class="helper">
+<p id="memoryHelper" class="helper">
 
-            🫙 There are <strong>5 little memories</strong> hidden inside.
-            <br><br>
-            <span id="memoryProgress">0 / 5 Memories Unlocked</span>
-            <br><br>
-            👇 Tap the jar to unlock the first one.
+    🫙 There are <strong>5 little memories</strong> hidden inside.
 
-        </p>
+    <br><br>
 
-        <div class="memory-area">
+    👇 Tap the jar to unlock the first one.
 
-            <div id="memoryJar" class="memory-jar">
+</p>
 
-    <div class="jar-glow"></div>
+<div class="memory-area">
 
-    🫙
+    <div id="memoryJar" class="memory-jar">
+
+        <div class="jar-glow"></div>
+
+        🫙
+
+    </div>
+
+    <span
+        id="memoryProgress"
+        class="memory-counter progress-counter">
+
+        0 / 5 Memories Unlocked
+
+    </span>
+
+    <div
+        id="memoryText"
+        class="memory-text"
+        aria-live="polite">
+
+        Tap the jar to begin your little memory journey... 💙
+
+    </div>
 
 </div>
-
-<div
-    id="memoryText"
-    class="memory-text"
-    aria-live="polite">
-
-    Tap the jar to begin your little memory journey... 💙
-
-</div>
-
-        </div>
 
         <!-- Updated: Now goes to Timeline -->
-        <button
+<button
     type="button"
-    class="next-btn"
+    class="next-btn memory-continue"
     data-next="timeline"
     aria-label="Continue to Timeline">
 
@@ -868,7 +884,7 @@
 
 </button>
 
-    </div>
+</div>
 
 </section>
 
@@ -892,7 +908,13 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content" tabindex="0">
-                    <h3>🏡 Childhood</h3>
+                    <h3>
+
+                        <span class="timeline-icon">🏡</span>
+
+                        Childhood
+
+                    </h3>
                     <p>
                         We didn't spend every day together,
                         but family gatherings quietly created little memories.
@@ -903,7 +925,13 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content" tabindex="0">
-                    <h3>🎓 School Days</h3>
+                    <h3>
+
+                        <span class="timeline-icon">🎓</span>
+
+                        School Days
+
+                    </h3>
                     <p>
                         Life took us on different paths,
                         yet those familiar faces always remained.
@@ -914,7 +942,13 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content" tabindex="0">
-                    <h3>💬 Friendship Begins</h3>
+                    <h3>
+
+                        <span class="timeline-icon">💬</span>
+
+                        Friendship Begins
+
+                    </h3>
                     <p>
                         One conversation after my schooling
                         slowly became something much more meaningful.
@@ -925,7 +959,13 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content" tabindex="0">
-                    <h3>😂 Countless Chats</h3>
+                    <h3>
+
+                        <span class="timeline-icon">😂</span>
+
+                        Countless Chats
+
+                    </h3>
                     <p>
                         Reels, random conversations,
                         laughter, and countless little moments
@@ -937,7 +977,13 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content" tabindex="0">
-                    <h3>🎂 Today</h3>
+                    <h3>
+
+                        <span class="timeline-icon">🎂</span>
+
+                        Today
+
+                    </h3>
                     <p>
     And today...
     this little website becomes
@@ -996,6 +1042,7 @@
 ========================================== -->
 
 <section class="panel celebration" id="celebration">
+    <div id="confettiContainer"></div>
     <div class="balloons">
 
     <span class="balloon balloon1">🎈</span>
@@ -1013,9 +1060,43 @@
 
 </div>
 
-        <h1 class="celebration-title">🎉 Happy 21st Birthday 🎉</h1>
+<div class="title-wrapper">
 
-        <h2 class="celebration-name">Shivani 💙</h2>
+    <span class="title-star star-a">✨</span>
+    <span class="title-star star-b">✦</span>
+    <span class="title-star star-c">✨</span>
+
+    <h1 class="celebration-title">
+
+        🎉<br>
+
+        Happy<br>
+
+        21st<br>
+
+        Birthday
+
+    </h1>
+
+</div>
+
+        <div class="floating-confetti">
+            <span>✨</span>
+            <span>💙</span>
+            <span>✦</span>
+            <span>✨</span>
+            <span>💙</span>
+        </div>
+
+        <h2 class="celebration-name">
+
+            <span class="shine-name">
+
+                Shivani 💙
+
+            </span>
+
+        </h2>
 
         <p class="celebration-message">
 
@@ -1060,7 +1141,7 @@
         </h1>
 
         <h3 class="end-line">
-            Especially for you, Pranathi 💙
+            Especially for you, Shivani 💙
         </h3>
 
         <br>
@@ -1116,7 +1197,9 @@
 <p class="end-line">
     Carefully crafted to celebrate your 21st Birthday.
 </p>
-
+<div class="shooting-star"></div>
+</div>
+</section>
 
 <script src="script.js"></script>
 
