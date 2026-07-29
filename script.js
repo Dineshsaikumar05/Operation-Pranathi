@@ -119,7 +119,7 @@ if(revealSection){
 function smoothScrollTo(target, duration = 560, onComplete = null) {
 
     const start = window.pageYOffset;
-    const end = target.getBoundingClientRect().top + window.pageYOffset;
+    const end = target.offsetTop;
     const distance = end - start;
 
     let startTime = null;
@@ -434,7 +434,7 @@ const letterObserver = new IntersectionObserver((entries) => {
     });
 
 }, {
-    threshold: 0.4
+    threshold: 0.12
 });
 
 if (letterSection) {
@@ -692,6 +692,7 @@ const timelineObserver = new IntersectionObserver((entries) => {
 
             entry.target.classList.add("show");
 
+            timelineObserver.unobserve(entry.target);
 
             if(timeline){
 
@@ -721,6 +722,10 @@ timelineItems.forEach(item=>{
 const scanner = document.getElementById("scanner");
 const scanBar = document.querySelector(".scan-progress-fill");
 
+const scanItems = document.querySelectorAll(".scan-item");
+const scanLines = document.querySelectorAll(".scan-line");
+const scanResult = document.querySelector(".scan-result");
+
 let scannerPlayed = false;
 
 const scannerObserver = new IntersectionObserver((entries)=>{
@@ -730,20 +735,14 @@ const scannerObserver = new IntersectionObserver((entries)=>{
         if(entry.isIntersecting && !scannerPlayed){
 
             scannerPlayed = true;
+
             scannerObserver.unobserve(entry.target);
 
-            scanBar.style.transition = "width 1.5s linear";
             scanBar.style.width = "100%";
 
-            setTimeout(() => {
+            setTimeout(()=>{
 
-                const items = document.querySelectorAll(".scan-item");
-
-                const result = document.querySelector(".scan-result");
-
-                const lines = document.querySelectorAll(".scan-line");
-
-                items.forEach((item,index)=>{
+                scanItems.forEach((item,index)=>{
 
                     setTimeout(()=>{
 
@@ -755,21 +754,21 @@ const scannerObserver = new IntersectionObserver((entries)=>{
 
                 setTimeout(()=>{
 
-                    if(result){
+                    if(scanResult){
 
-                        result.classList.add("show");
+                        scanResult.classList.add("show");
 
                     }
 
-                },items.length*140+180);
+                },scanItems.length*140+180);
 
-                lines.forEach((line,index)=>{
+                scanLines.forEach((line,index)=>{
 
                     setTimeout(()=>{
 
                         line.classList.add("show");
 
-                    },items.length*140+300+(index*170));
+                    },scanItems.length*140+300+(index*170));
 
                 });
 
@@ -790,10 +789,12 @@ if(scanner){
 }
 
 /* ==========================================
-        CINEMATIC END SCREEN
+        END SCREEN REVEAL
 ========================================== */
 
 const endSection = document.getElementById("end");
+const endLines = document.querySelectorAll(".end-line");
+const shootingStar = document.querySelector(".shooting-star");
 
 let endPlayed = false;
 
@@ -804,22 +805,20 @@ const endObserver = new IntersectionObserver((entries)=>{
         if(entry.isIntersecting && !endPlayed){
 
             endPlayed = true;
-            endObserver.unobserve(entry.target);
-            const lines = document.querySelectorAll(".end-line");
 
-            lines.forEach((line,index)=>{
+            endObserver.unobserve(entry.target);
+
+            endLines.forEach((line,index)=>{
 
                 setTimeout(()=>{
 
                     line.classList.add("show");
 
-                    if(index === lines.length-1){
+                    if(index === endLines.length-1){
 
                         setTimeout(()=>{
 
-                            document
-                                .querySelector(".shooting-star")
-                                ?.classList.add("show");
+                            shootingStar?.classList.add("show");
 
                         },900);
 
@@ -893,49 +892,37 @@ const celebrationObserver = new IntersectionObserver((entries)=>{
 
     entries.forEach(entry=>{
 
-        if(entry.isIntersecting && !celebrationPlayed){
+        if(!entry.isIntersecting || celebrationPlayed) return;
 
-            celebrationPlayed = true;
-            celebrationObserver.unobserve(entry.target);
-            launchBlueConfetti();
+        celebrationPlayed = true;
 
-            setTimeout(()=>{
+        celebrationObserver.unobserve(entry.target);
 
-                if (celebrationTitle)
-                    celebrationTitle.classList.add("show");
+        launchBlueConfetti();
 
-            },300);
+        if (celebrationTitle) {
+            setTimeout(() => celebrationTitle.classList.add("show"), 300);
+        }
 
-            setTimeout(()=>{
+        if (celebrationName) {
+            setTimeout(() => celebrationName.classList.add("show"), 900);
+        }
 
-                if (celebrationName)
-                    celebrationName.classList.add("show");
+        if (celebrationMessage) {
+            setTimeout(() => celebrationMessage.classList.add("show"), 1500);
+        }
 
-            },900);
-
-            setTimeout(()=>{
-
-                if (celebrationMessage)
-                    celebrationMessage.classList.add("show");
-
-            },1500);
-
-            setTimeout(()=>{
-
-                if (celebrationButton)
-                    celebrationButton.classList.add("show");
-
-            },2200);
-
+        if (celebrationButton) {
+            setTimeout(() => celebrationButton.classList.add("show"), 2200);
         }
 
     });
 
 },{
-    threshold:.45
+    threshold:0.45
 });
 
-if(celebration){
+if (celebration) {
 
     celebrationObserver.observe(celebration);
 
