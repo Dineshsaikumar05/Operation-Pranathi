@@ -474,7 +474,7 @@ if (memoryJar && memoryText) {
 
     memoryJar.addEventListener("click", () => {
 
-        for(let i = 0; i < 10; i++){
+        for(let i = 0; i < 5; i++){
 
             const particle = document.createElement("span");
 
@@ -1072,7 +1072,7 @@ function launchBlueConfetti(){
         "#FFFFFF"
     ];
 
-    for(let i=0;i<120;i++){
+    for(let i=0;i<70;i++){
 
         const piece=document.createElement("span");
 

@@ -2968,23 +2968,45 @@ filter:drop-shadow(0 0 20px rgba(96,165,250,.35));
 
     margin-bottom:18px;
 
-    animation:heartBeat 1.5s infinite;
+    animation:heartBeat 2.2s ease-in-out infinite;
 
-    filter:drop-shadow(0 0 18px rgba(93,169,255,.8));
+    filter:drop-shadow(0 0 20px rgba(93,169,255,.85));
 
 }
-
 @keyframes heartBeat{
 
-    0%,100%{
+    0%{
 
         transform:scale(1);
+        filter:drop-shadow(0 0 12px rgba(93,169,255,.55));
+
+    }
+
+    25%{
+
+        transform:scale(1.04);
+        filter:drop-shadow(0 0 18px rgba(93,169,255,.8));
 
     }
 
     50%{
 
-        transform:scale(1.18);
+        transform:scale(1.10);
+        filter:drop-shadow(0 0 30px rgba(93,169,255,1));
+
+    }
+
+    75%{
+
+        transform:scale(1.04);
+        filter:drop-shadow(0 0 18px rgba(93,169,255,.8));
+
+    }
+
+    100%{
+
+        transform:scale(1);
+        filter:drop-shadow(0 0 12px rgba(93,169,255,.55));
 
     }
 
@@ -3109,6 +3131,7 @@ filter:drop-shadow(0 0 20px rgba(96,165,250,.35));
     font-size:.95rem;
 
 }
+
 /* ==========================================
         ANIMATED BACKGROUND
 ========================================== */
@@ -4351,6 +4374,23 @@ body::after{
         padding:30px 14px;
 
     }
+    #cursorGlow{
+
+        display:none !important;
+
+    }
+    body::after{
+
+        animation:none;
+
+        opacity:.35;
+
+    }
+    .title-star{
+
+        animation:none;
+
+    }
     .letter{
 
         align-items:flex-start;
@@ -4361,7 +4401,11 @@ body::after{
 
     }
     /* ---------- CONTENT ---------- */
+    .timeline-icon{
 
+        animation:none;
+
+    }
     .content{
 
         width:92%;
@@ -4559,6 +4603,11 @@ body::after{
         padding:18px;
         font-size:.95rem;
         line-height:1.6;
+
+    }
+    .celebration-badge{
+
+        animation:none;
 
     }
 
