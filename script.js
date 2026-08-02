@@ -282,11 +282,15 @@ buttons.forEach(button=>{
 
         smoothScrollTo(section, 560, () => {
 
-            if (nextContent) {
-                nextContent.classList.add("show");
-            }
+            requestAnimationFrame(() => {
 
-            isNavigating = false;
+                if (nextContent) {
+                    nextContent.classList.add("show");
+                }
+
+                isNavigating = false;
+
+            });
 
         });
 
@@ -509,7 +513,9 @@ if (memoryJar && memoryText) {
 
     memoryJar.addEventListener("click", () => {
 
-        for(let i = 0; i < 5; i++){
+        const particleCount = window.innerWidth <= 768 ? 2 : 5;
+
+        for(let i = 0; i < particleCount; i++){
 
             const particle = document.createElement("span");
 
@@ -538,19 +544,13 @@ if (memoryJar && memoryText) {
 
         }
 
-        memoryJar.style.transform = "scale(.88) rotate(-10deg)";
-
-        setTimeout(() => {
-
-            memoryJar.style.transform = "scale(1.12) rotate(8deg)";
-
-        }, 120);
+        memoryJar.style.transform = "scale(.96)";
 
         setTimeout(() => {
 
             memoryJar.style.transform = "scale(1)";
 
-        }, 240);
+        },160);
         memoryText.classList.remove("show");
         memoryText.classList.add("hide");
 
@@ -579,7 +579,7 @@ if (memoryJar && memoryText) {
 
             memoryProgress.textContent =
                 `${currentMemory} / ${memories.length} Memories Unlocked`;
-                memoryProgress.style.transform = "scale(1.15)";
+                memoryProgress.style.transform = "scale(1.05)";
 
                 setTimeout(() => {
 

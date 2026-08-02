@@ -307,9 +307,9 @@ button:active{
     filter:blur(0);
 
     transition:
-        opacity .9s ease,
-        transform .9s cubic-bezier(.22,1,.36,1),
-        filter .9s ease;
+        opacity .55s ease,
+        transform .55s cubic-bezier(.22,1,.36,1),
+        filter .45s ease;
 
 }
 /* ==========================================
