@@ -2622,14 +2622,11 @@ filter:drop-shadow(0 0 20px rgba(96,165,250,.35));
         drop-shadow(0 0 28px rgba(59,130,246,.25));
 
 }
-
 .memory-jar:hover{
 
-    transform:scale(1.1) rotate(-4deg);
+transform:scale(1.06);
 
-    filter:
-        drop-shadow(0 0 20px rgba(125,211,252,.65))
-        drop-shadow(0 0 40px rgba(59,130,246,.30));
+filter:none;
 
 }
 
@@ -4358,20 +4355,62 @@ body::after{
 =========================== */
 
 @media (max-width:768px){
+/* ==========================================
+   HERO MOBILE PERFORMANCE
+========================================== */
+/* Shooting star GPU optimization */
 
+    .shooting-star{
+        width:120px;
+
+    box-shadow:
+    0 0 8px #60A5FA;
+
+    }
+    .intro .shooting-star{
+        animation-duration:18s !important;
+    }
+
+    .intro .star{
+        animation-duration:12s !important;
+    }
+
+    .intro .particle{
+        animation-duration:20s !important;
+    }
+
+    .intro .moonGlow{
+        animation-duration:8s !important;
+    }
     /* ---------- PANEL ---------- */
 
-    .panel{
+    .panel::before{
 
-        min-height:100svh;
+        filter: blur(35px) !important;
 
-        display:flex;
+        width:240px !important;
 
-        justify-content:center;
+        height:240px !important;
 
-        align-items:center;
+    }
 
-        padding:30px 14px;
+    .end::before{
+
+        filter: blur(18px) !important;
+
+        width:320px !important;
+
+        height:320px !important;
+
+    }
+
+    .moonGlow{
+
+        filter: blur(12px) !important;
+
+        width:260px !important;
+
+        height:260px !important;
 
     }
     #cursorGlow{
@@ -5147,6 +5186,35 @@ body::after{
     .signature-writing{
 
         font-size:1.8rem;
+
+    }
+
+}
+/* ==========================================
+   MOBILE PERFORMANCE MODE
+========================================== */
+
+@media (max-width:768px){
+
+body.scrolling .sparkle,
+body.scrolling .particle,
+body.scrolling .floating-particle,
+body.scrolling .memory-particle,
+body.scrolling .timeline-icon,
+body.scrolling .timeline-dot,
+body.scrolling .moonGlow,
+body.scrolling .shooting-star{
+
+    animation-play-state:paused !important;
+
+}
+
+}
+@media (pointer: coarse){
+
+    #cursorGlow{
+
+        display:none !important;
 
     }
 

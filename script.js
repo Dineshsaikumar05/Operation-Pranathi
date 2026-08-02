@@ -5,6 +5,41 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* ==========================================
+   MOBILE PERFORMANCE MODE
+========================================== */
+
+const isMobile =
+    window.matchMedia("(max-width:768px)").matches ||
+    "ontouchstart" in window;
+
+let scrollTimer = null;
+
+function pauseAnimations() {
+
+    if (!isMobile) return;
+
+    document.body.classList.add("scrolling");
+
+}
+
+function resumeAnimations() {
+
+    if (!isMobile) return;
+
+    document.body.classList.remove("scrolling");
+
+}
+
+window.addEventListener("scroll", () => {
+
+    pauseAnimations();
+
+    clearTimeout(scrollTimer);
+
+    scrollTimer = setTimeout(resumeAnimations, 150);
+
+}, { passive:true });
 /* ==========================================
         REVEAL ANIMATION
 ========================================== */
