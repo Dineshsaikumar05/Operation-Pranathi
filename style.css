@@ -2358,84 +2358,53 @@ filter:drop-shadow(0 0 20px rgba(96,165,250,.35));
     width:100%;
     min-height:260px;
 
-    perspective:650px;
+    perspective:1100px;
     cursor:pointer;
 
     transform:translateZ(0);
 
     transition:
-        transform .35s ease,
-        box-shadow .35s ease;
+        transform .45s cubic-bezier(.22,1,.36,1),
+        box-shadow .30s ease;
 
 }
-
 /* BOTH SIDES */
 
 .card-front,
 .card-back{
-
     position:absolute;
-
     inset:0;
-
     border-radius:22px;
-
     padding:24px;
-
     backface-visibility:hidden;
-
     transform-style:preserve-3d;
-
-    transition:transform .55s ease;
-
+    transition:
+        transform .72s cubic-bezier(.22,1,.36,1);
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
-
     text-align:center;
-
     overflow:hidden;
-
 }
 
 /* FRONT */
-
 .card-front{
 
     background:rgba(255,255,255,.10);
-
-    /*backdrop-filter:blur(8px);
-
-    -webkit-backdrop-filter:blur(8px);*/
-
     border:1px solid rgba(255,255,255,.15);
-
     box-shadow:
-
         0 8px 18px rgba(0,0,0,.18);
 
 }
-
 .card-front h3{
-
     font-size:3rem;
-
     margin-bottom:15px;
-
 }
-
 .card-front h4{
-
     font-size:1.2rem;
-
     color:#fff;
-
     line-height:1.4;
-
 }
 
 /* BACK */
@@ -2495,52 +2464,35 @@ filter:drop-shadow(0 0 20px rgba(96,165,250,.35));
 }
 
 /* HOVER */
-
 .card:hover{
 
-    transform:translateY(-4px);
-
+    transform:
+        translateY(-6px)
+        scale(1.015);
     box-shadow:
-        0 20px 35px rgba(96,165,250,.15);
+        0 18px 28px rgba(96,165,250,.18);
 
 }
-
 /* GLOW */
 
 .card::after{
-
     content:"";
-
     position:absolute;
-
     inset:0;
-
     border-radius:22px;
-
     background:
-
         radial-gradient(
-
             circle,
-
             rgba(96,165,250,.25),
-
             transparent 70%
-
         );
-
     opacity:0;
-
     transition:opacity .3s;
-
 }
 
 .card:hover::after{
-
     opacity:1;
-
 }
-
 /* ==========================================
         COMPLETE MESSAGE
 ========================================== */
@@ -2758,15 +2710,10 @@ filter:none;
 
     opacity:1;
 
-    transform:
-        translateY(0)
-        scale(1);
+    transform:translateY(0);
 
     box-shadow:
-
-        0 0 30px rgba(125,211,252,.22),
-
-        0 14px 34px rgba(0,0,0,.22);
+        0 10px 24px rgba(0,0,0,.20);
 
 }
 
@@ -4355,17 +4302,18 @@ body::after{
 =========================== */
 
 @media (max-width:768px){
-/* ==========================================
-   HERO MOBILE PERFORMANCE
-========================================== */
-/* Shooting star GPU optimization */
+/* Disable glass sweep on mobile */
+    .content::before{
 
+        animation:none !important;
+
+        opacity:0 !important;
+
+    }
     .shooting-star{
         width:120px;
-
-    box-shadow:
-    0 0 8px #60A5FA;
-
+        box-shadow:
+        0 0 8px #60A5FA;
     }
     .intro .shooting-star{
         animation-duration:18s !important;
@@ -4680,6 +4628,17 @@ body::after{
     .particles span:nth-child(n+9){
 
         display:none;
+
+    }
+    .birthday-photo{
+
+        animation:
+            photoEntrance .8s ease,
+            floatPhoto 8s ease-in-out infinite;
+
+        box-shadow:
+            0 0 14px rgba(96,165,250,.30),
+            0 0 32px rgba(59,130,246,.18);
 
     }    
 
