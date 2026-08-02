@@ -1,6 +1,6 @@
 # 🎁 An Interactive Birthday Surprise Website
 
-### Operation Pranathi
+### Project Blue – A Personalized Birthday Experience
 
 ![Project Preview](preview.png)
 
