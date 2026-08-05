@@ -487,15 +487,15 @@ if (letterSection) {
 
 const memories = [
 
-    "💭 We rarely met during childhood, but every family function quietly added another little memory.",
+"💭 We may not have met every day, but every family gathering quietly added another little memory.",
 
-    "💭 One memorable conversation after schooling slowly became the beginning of a wonderful friendship.",
+"💭 Funny how one random conversation slowly turned into a friendship that now feels completely natural.",
 
-    "💭 Somewhere between sharing reels, random chats and everyday conversations, time simply flew by.",
+"💭 Somewhere between sharing reels, random chats, and everyday conversations... time quietly flew by.",
 
-    "💭 It's funny how the best friendships often grow from the simplest moments.",
+"💭 The best friendships aren't built in a single day—they're built through countless little moments that often go unnoticed.",
 
-    "💭 Hopefully this little birthday surprise becomes one more happy memory to look back on someday. 😊"
+"💭 Hopefully this little surprise becomes one more happy memory that brings a smile whenever you look back on it. 💙"
 
 ];
 
